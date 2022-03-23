@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import SearchBar from './components/SearchBar/SearchBar';
+import DataTable from './components/DataTable/DataTable';
+import Menu from './components/Menu/Menu';
+import store from './app/store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+    <Container component="main" maxWidth="lg">
+
+      <Grid container spacing={2} m={2}>
+        <Grid item xs={2} >
+            Search Flight
+        </Grid>
+        <Grid item xs={10}>
+            <SearchBar />
+        </Grid>
+        <Grid item xs={2}>
+          <Menu />
+        </Grid>
+        <Grid item xs={10}>
+          <DataTable />
+        </Grid>
+      </Grid>
+    </Container>
+    </Provider>
   );
 }
 
