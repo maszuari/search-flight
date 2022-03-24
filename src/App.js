@@ -4,8 +4,6 @@ import Home from './components/Home/Home';
 import FeatureFlag from './components/FeatureFlag/FeatureFlag';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
 import store from './app/store'
 import { Link } from "react-router-dom";
 

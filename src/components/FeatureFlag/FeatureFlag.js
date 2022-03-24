@@ -7,7 +7,6 @@ export default function FeatureFlag(){
 
     const [isLocalFiltering, setIsLocalFileting] = useState(false);
     const handleChange = (e) => {
-        //setChecked(event.target.checked);
         console.log('FeatureFlag ', e.target.checked);
         setIsLocalFileting(e.target.checked);
         localStorage.setItem('isLocalFiltering', JSON.stringify(e.target.checked));

@@ -30,10 +30,6 @@ export default function DataTable() {
         setPage(0);
     };
 
-    useEffect(()=>{
-        console.log('DataTable ', data);
-    },[data]);
-
     return (
         <React.Fragment>
             <TableContainer >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchFlight, setIsNewSearch, setFilterList } from '../../app/flightSlice';
 import FormGroup from '@mui/material/FormGroup';
@@ -10,7 +10,7 @@ import { getFlightsByNameStops, filterBySelectedNames } from '../../services/fli
 const setStatusAirlineFromList = (curList, name, status) =>{
     console.log('setStatusAirlineFromList ', curList)
     let newArray = JSON.parse(JSON.stringify(curList));
-    //let newArray = [...curList]
+
     for ( let i=0; i< newArray.length; i++ ) {
         if ( newArray[i].name === name ) {
             newArray[i].checked = status;
@@ -33,11 +33,8 @@ const getNamesFromList = (curList) => {
 
 export default function Menu() {
 
-    const data = useSelector((state) => state.flight.value);
     const query = useSelector((state) => state.flight.query);
     let filterList = useSelector((state) => state.flight.filterList);
-    const showFilterList = useSelector((state) => state.flight.showFilterList);
-    const isNewSearch = useSelector((state) => state.flight.isNewSearch);
     const dispatch = useDispatch();
     const [list,setList] = useState([]);
 
@@ -62,49 +59,6 @@ export default function Menu() {
             dispatch(setIsNewSearch(false));  
         });
     }
-
-    // useEffect(()=>{
-    //     console.log('MENU showFilterList ', showFilterList)
-    //     console.log('MENU isNewSerch ', isNewSearch)
-    //     if (isNewSearch && showFilterList) {
-            
-    //         // const mySet = new Set();
-    //         // data.forEach((obj)=>{
-    //         //     let airlineName = obj.AirlineName.trim()
-    //         //     let airlineElem = {
-    //         //         name: obj.AirlineName.trim(),
-    //         //         checked: true
-    //         //     }
-    //         //     mySet.add(airlineElem)
-    //         // });
-    //         // console.log('IsNewSearch ', mySet);
-    //         // const myArr = Array.from(mySet)
-
-    //         let arr = []
-    //         data.forEach( (obj)=> {
-    //             let found = false;
-    //             for (let i=0; i<arr.length; i++) {
-    //                 if (obj.AirlineName === arr[i].name) {
-    //                     found = true;
-    //                     break;
-    //                 }
-    //             }
-    //             if( !found ){
-    //                 let newElem = {
-    //                     name: obj.AirlineName.trim(),
-    //                     checked:true    
-    //                 }
-    //                 arr.push(newElem);
-    //             }
-    //         });
-    //         console.log('Checked box ', arr)
-    //         setList(arr) 
-    //     }else if(isNewSearch && !showFilterList) {
-    //         setList([]);
-    //     }
-    // },[isNewSearch, showFilterList])
-
-    console.log('MENU FILTERLIST ', filterList);
 
     return (
         <React.Fragment>

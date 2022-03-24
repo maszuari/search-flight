@@ -6,41 +6,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {getFlightsByNameStops} from '../../services/flight.service';
 
-const findByNameAndStops = (data, name, stops) => {
-
-    let arr = [];
-    data.forEach( obj =>{
-        // console.log('Add AirlineName and Stops ', obj.AirlineName, name, stops)
-        if (obj.AirlineName.toLowerCase().includes(name) && obj.Stops == stops) {
-            arr.push(obj);
-        }
-    })
-
-    return arr;
-}
-
-const findByNameOnly = (data, name) => {
-    let arr = []
-    data.forEach( obj =>{
-        // console.log('Add AirlineName ', obj.AirlineName, name)
-        if (obj.AirlineName.toLowerCase().includes(name)) {
-            arr.push(obj)
-        }
-    })
-    return arr;
-}
-
-const findByStopsOnly = (data, stops) => {
-    let arr = []
-    data.forEach( obj =>{
-        // console.log('Add stops ', obj.Stops, stops)
-        if (obj.Stops == stops ) {
-            arr.push(obj)
-        }
-    })
-    return arr;
-}
-
 const getFilterList = (data) => {
     let arr = [];
     data.forEach( (obj)=> {
@@ -84,12 +49,10 @@ export default function SearchBar(){
             };
             dispatch(setQuery(query));
             
-            //Find out if the data needs to be filtered locally
             getFlightsByNameStops(strName, stops)
             .then(data=>{
                 console.log('newData ', data);
                 dispatch(searchFlight(data));
-                console.log('SearchBar isNewSearch ', true)
                 dispatch(setIsNewSearch(true));
                 if (data.length > 0){
                     let filterList = getFilterList(data);
