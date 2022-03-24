@@ -11,18 +11,27 @@ export const getFlightsByNameStops = (name, stops) =>{
     })
     .then(data => {
         //Find out if the data needs to be filtered locally.
-        let newData = null;
-        if (name && stops) {
-            // find by name and stops
-            newData = findByNameAndStops(data, name, stops); 
-        }else if (name && !stops) {
-            // find by name only
-            newData = findByNameOnly(data, name);
-        }else if (!name && stops){
-            // find by stops only
-            newData = findByStopsOnly(data, stops);
-        }
-        return newData;
+        const isLocalFiltering = JSON.parse(localStorage.getItem('isLocalFiltering'));
+        if(isLocalFiltering) {
+            let newData = null;
+            if (name && stops) {
+                // find by name and stops
+                newData = findByNameAndStops(data, name, stops); 
+            }else if (name && !stops) {
+                // find by name only
+                newData = findByNameOnly(data, name);
+            }else if (!name && stops){
+                // find by stops only
+                newData = findByStopsOnly(data, stops);
+            }
+            console.log('Local Filtering')
+            return newData;
+        }else{
+            console.log('Remote Filtering')
+            return data;
+        } 
+        
+        
     })
     .catch(error => console.log(error))
 }
@@ -65,6 +74,7 @@ export const findByNameOnly = (data, name) => {
     data.forEach( obj =>{
         // console.log('Add AirlineName ', obj.AirlineName, name)
         if (obj.AirlineName.toLowerCase().includes(name)) {
+            console.log('ADD ', obj.AirlineName)
             arr.push(obj)
         }
     })
