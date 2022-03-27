@@ -2,23 +2,31 @@ import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLocalFiltering } from '../../app/flightSlice';
 
 export default function FeatureFlag(){
 
-    const [isLocalFiltering, setIsLocalFileting] = useState(false);
+    // const [hasLocalFiltering, setHasLocalFileting] = useState(true);
+    const isLocalFiltering = useSelector((state) => state.flight.isLocalFiltering);
+    const dispatch = useDispatch();
+
     const handleChange = (e) => {
         console.log('FeatureFlag ', e.target.checked);
-        setIsLocalFileting(e.target.checked);
+        //setHasLocalFileting(e.target.checked);
         localStorage.setItem('isLocalFiltering', JSON.stringify(e.target.checked));
+        dispatch(setIsLocalFiltering(e.target.checked));
     };
 
     useEffect(()=>{
         const rs = JSON.parse(localStorage.getItem('isLocalFiltering'));
         if (rs){
-            setIsLocalFileting(rs);
+            dispatch(setIsLocalFiltering(rs));
         }
         console.log('Init isLocalFiltering ', isLocalFiltering);
     },[])
+
+    console.log('FeatureFlag Component ', isLocalFiltering)
 
     return (
         <React.Fragment>

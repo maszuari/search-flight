@@ -7,7 +7,8 @@ export const flightSlice = createSlice({
       query: {},
       isNewSearch: false,
       showFilterList: false,
-      filterList: []
+      filterList: [],
+      isLocalFiltering: false
     },
     reducers: {
       searchFlight: (state, action) =>{
@@ -24,11 +25,14 @@ export const flightSlice = createSlice({
       },
       setShowFilterList: (state, action) => {
          state.showFilterList = action.payload; 
+      },
+      setIsLocalFiltering: (state, action) => {
+          state.isLocalFiltering = action.payload;
       }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { searchFlight, setIsNewSearch, setQuery, setShowFilterList, setFilterList } = flightSlice.actions
+export const { searchFlight, setIsNewSearch, setQuery, setShowFilterList, setFilterList, setIsLocalFiltering } = flightSlice.actions
 
 export default flightSlice.reducer

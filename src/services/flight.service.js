@@ -12,6 +12,7 @@ export const getFlightsByNameStops = (name, stops) =>{
     .then(data => {
         //Find out if the data needs to be filtered locally.
         const isLocalFiltering = JSON.parse(localStorage.getItem('isLocalFiltering'));
+       
         if(isLocalFiltering) {
             let newData = null;
             if (name && stops) {
