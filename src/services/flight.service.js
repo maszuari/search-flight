@@ -62,7 +62,7 @@ export const findByNameAndStops = (data, name, stops) => {
     let arr = [];
     data.forEach( obj =>{
         // console.log('Add AirlineName and Stops ', obj.AirlineName, name, stops)
-        if (obj.AirlineName.toLowerCase().includes(name) && obj.Stops == stops) {
+        if (obj.AirlineName.toLowerCase().includes(name.toLowerCase()) && obj.Stops == stops) {
             arr.push(obj);
         }
     })
@@ -73,9 +73,7 @@ export const findByNameAndStops = (data, name, stops) => {
 export const findByNameOnly = (data, name) => {
     let arr = []
     data.forEach( obj =>{
-        //console.log('Add AirlineName ', obj.AirlineName, name)
-        if (obj.AirlineName.toLowerCase().includes(name)) {
-            //console.log('ADD ', obj.AirlineName)
+        if (obj.AirlineName.toLowerCase().includes(name.toLowerCase())) {
             arr.push(obj)
         }
     })

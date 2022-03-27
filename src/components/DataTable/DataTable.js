@@ -30,6 +30,8 @@ export default function DataTable() {
         setPage(0);
     };
 
+    console.log('DataTable ',data)
+
     return (
         <React.Fragment>
             <TableContainer >

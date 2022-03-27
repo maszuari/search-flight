@@ -63,6 +63,7 @@ export default function SearchBar() {
                         dispatch(setFilterList(filterList));
                         dispatch(setShowFilterList(true));
                     } else {
+                        dispatch(searchFlight([]));
                         dispatch(setFilterList([]));
                         dispatch(setShowFilterList(false));
                         setOpenAlert(true);
